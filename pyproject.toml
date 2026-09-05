@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neraium-consequence"
+version = "1.0.0"
+description = "Evidence-supported integration of observed-minus-expected resource rates"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Neraium"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1", "mypy>=1.15,<2", "build>=1,<2"]
+
+[project.urls]
+Repository = "https://github.com/Neraium/neraium-consequence"
+
+[tool.setuptools]
+packages = ["neraium_consequence"]
+
+[tool.setuptools.package-data]
+neraium_consequence = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["neraium_consequence"]
