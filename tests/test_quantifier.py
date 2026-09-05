@@ -307,3 +307,14 @@ def test_evidence_boundary():
         "dollar_savings",
     }
     assert not forbidden.intersection(quantify(rows()))
+
+
+def test_absolute_crossing_does_not_underflow_sign_detection():
+    result = quantify(
+        [
+            {"timestamp": 0, "observed": -1e-170, "expected": 0},
+            {"timestamp": 60, "observed": 1e-170, "expected": 0},
+        ]
+    )
+    assert result["cumulative_amount"] == 0
+    assert result["absolute_cumulative_amount"] == pytest.approx(5e-171, rel=1e-12, abs=0)

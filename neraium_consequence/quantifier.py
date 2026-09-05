@@ -113,7 +113,7 @@ def quantify_consequence(
         amount = (a / 2.0 + b / 2.0) * scale
         # Integrate the absolute piecewise-linear residual exactly at zero crossings.
         absolute = (abs(a) / 2.0 + abs(b) / 2.0) * scale
-        if a * b < 0:
+        if (a < 0 < b) or (b < 0 < a):
             largest, smallest = max(abs(a), abs(b)), min(abs(a), abs(b))
             ratio = smallest / largest
             absolute = (largest / 2.0) * ((1 + ratio * ratio) / (1 + ratio)) * scale
